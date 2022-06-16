@@ -1,5 +1,7 @@
 let totalQuotes = 100
 let isMilitary = false
+let isCelsius = false
+let cachedWeather = {}
 
 setInterval(updateClock,1000)
 
@@ -10,6 +12,14 @@ setRandomImageBackground()
 const clockFormat = document.getElementById("clock-format")
 
 clockFormat.addEventListener('change', toggleMilitaryTime)
+
+const imageRefresh = document.getElementById("image-refresh")
+
+imageRefresh.addEventListener('click', setRandomImageBackground)
+
+const quote = document.getElementById("quote")
+
+quote.addEventListener('click', updateRandomQuote)
 
 function toggleMilitaryTime(e) {
   isMilitary = e.target.checked
@@ -84,7 +94,7 @@ function fetchRandomQuote() {
 function updateRandomQuote() {
   fetchRandomQuote().then(function(quote) {
     document.getElementById("quote-text").innerHTML = removeTags(quote.content)
-    document.getElementById("quote-author").innerText = quote.author
+    document.getElementById("quote-author").innerHTML = quote.author
   })
 }
 
@@ -106,7 +116,8 @@ function fetchWeatherData() {
 function updateWeather() {
   fetchWeatherData().then(function(weather){
     document.getElementById("weather-description").innerText = weather.detailedForecast
-    document.getElementById("current-temperature").innerHTML = weather.temperature + "&#176;"
+    const temp = isCelsius ? fahrenheitToCelsius(weather.temperature) : weather.temperature
+    document.getElementById("current-temperature").innerHTML = temp + "&#176;"
     document.getElementById("weather-icon").src = weather.icon
   })
 }

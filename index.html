@@ -34,18 +34,18 @@
       <div class="card position-absolute top-0 start-0" id="quote">
         <div class="card-body">
           <p class="card-text" id="quote-text">Example text that would be a quote of something that I want it to be</p>
-          <h3 class="card-subtitle text-muted" id="quote-author">Abraham Lincoln</h3>
+          <h5 class="card-subtitle text-muted">&mdash; <span id="quote-author">Abraham Lincoln</span></h5>
         </div>
       </div>
     </div>
 
     <div class="col">
       <div class="card position-absolute top-50 start-50 translate-middle" id="clock">
-        <div class="card-body">
-          <input type="checkbox" class="btn-check" id="clock-format" autocomplete="off">
-          <label class="btn btn-sm btn-outline-primary" for="clock-format">12</label>
-          <p id="time">4:00 pm</p>
-          <p id="clock-greeting">Good afternoon!</p>
+        <div class="card-body position-relative">
+          <h1 class="card-title text-center" id="time">4:00 pm</h1>
+          <p class="card-text" id="clock-greeting">Good afternoon!</p>
+          <input type="checkbox" class="btn-check position-absolute bottom-0 start-50 translate-middle-x" id="clock-format" autocomplete="off">
+          <label class="btn btn-sm btn-link" for="clock-format">12</label>
         </div>
       </div>
     </div>
@@ -53,16 +53,20 @@
     <div class="col position-relative">
       <div class="card position-absolute top-0 end-0" id="weather">
         <div class="card-body">
-          <p id="current-temperature">72&#176; f</p>
-          <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-            <label class="form-check-label" for="flexSwitchCheckDefault">F/C</label>
-          </div>
+          <p>
+            <span id="current-temperature">72&#176;</span>
+            <input type="checkbox" class="btn-check" id="temp-switch" autocomplete="off">
+            <label class="btn btn-sm btn-link" for="temp-switch">F</label>
+          </p>
           <img id="weather-icon" src="icon.png" alt="star">
           <p id="weather-description">Clear and starry</p>
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="fixed-bottom">
+    <button type="button" class="btn btn-light" id="image-refresh">↻</button>
   </div>
 
   <script src="js/vendor/modernizr-3.11.2.min.js"></script>
